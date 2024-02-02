@@ -1,4 +1,5 @@
 # Teddy Tonin, Pasha Alidadi
+# Copyrights are given to LSCE and CentraleSupélec
 
 import io
 from PyQt5.QtWidgets import QWidget,  QLabel, QTableView,QHBoxLayout ,QVBoxLayout,  QComboBox

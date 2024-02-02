@@ -1,4 +1,5 @@
 # Linn Habberstad, Teddy Tonin and Pasha Alidadi
+# Copyrights are given to LSCE and CentraleSupélec
 
 import os
 from PyQt5.QtWidgets import QMainWindow, QWidget, QAction, QFileDialog, QLabel, QVBoxLayout,QPushButton,QDesktopWidget
@@ -8,10 +9,10 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView
 import pandas as pd
 
 from file import load_file_on_widget,load_file
-from Plot import plot_widget
-from Organize_data import WorkSheet
+from plot import plot_widget
+from organizeData import WorkSheet
 from linage import PlotGraph
-from Interpolation import InterpolationWindow
+from interpolation import InterpolationWindow
 from correlation import CorrelationPlotGraph
 from histogram import HistogramPlotGraph
 from stats_function import StatsPlotGraph
@@ -173,11 +174,11 @@ class Home(QMainWindow):
         fileMenu.addAction(exitAction)
         #exitAction.triggered.connect(close_window(self))
 
-        #fileMenu.addSeparator()
-        #self.WorksheetAction = QAction("Worksheet",self)
-        #fileMenu.addAction(self.WorksheetAction)
-        #self.WorksheetAction.setDisabled(True)
-        #self.WorksheetAction.triggered.connect(self.show_worksheet)
+        fileMenu.addSeparator()
+        self.WorksheetAction = QAction("Worksheet",self)
+        fileMenu.addAction(self.WorksheetAction)
+        self.WorksheetAction.setDisabled(True)
+        self.WorksheetAction.triggered.connect(self.show_worksheet)
 
 
         # Module Data
@@ -265,11 +266,12 @@ class Home(QMainWindow):
                 
                 self.reload_menu()
                 print('new file added')
-                #self.WorksheetAction.setDisabled(False)
+                self.WorksheetAction.setDisabled(False)
                 self.Worksheet = WorkSheet(self.dataframe)
 
-    #def show_worksheet(self):
-        #self.Worksheet.displayWorksheet()
+
+    def show_worksheet(self):
+        self.Worksheet.displayWorksheet()
 
     def visualize_data(self):
         data_on_widget= load_file_on_widget(self.dataframes,self.filepaths)

@@ -1,6 +1,8 @@
+# Copyright are given to LSCE and CentraleSupélec
+
 import sys
 from PyQt5.QtWidgets import QApplication
-from Home import Home
+from home import Home
 
 def main():
     """Launch the software"""

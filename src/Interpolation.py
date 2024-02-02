@@ -1,4 +1,5 @@
 # Teddy Tonin
+# Copyrights are given to LSCE and CentraleSupélec
 
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *

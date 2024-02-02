@@ -1,4 +1,5 @@
 # Teddy Tonin
+# Copyrights are given to LSCE and CentraleSupélec
 
 
 from cmath import nan

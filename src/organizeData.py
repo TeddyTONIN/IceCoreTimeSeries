@@ -1,4 +1,5 @@
 # Teddy Tonin
+# Copyrights are given to LSCE and CentraleSupélec
 
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import QPushButton, QLabel, QStyle,QDesktopWidget, QVBoxLayout, QLineEdit,QPushButton,QHBoxLayout,QVBoxLayout,QFrame,QTreeWidget, QTreeWidgetItem
@@ -20,6 +21,7 @@ class WorkSheet(QtWidgets.QMainWindow):
         self.linagefolderscount = 0
         self.newsamplinfolderscount = 0
         self.tree_widget = None
+        self.abcissas = None
         self.detect_monotony()
 
         self.setWindowTitle('Organize your Worksheet')
@@ -33,37 +35,37 @@ class WorkSheet(QtWidgets.QMainWindow):
         self.setFixedSize(self.size())
         self.setWindowTitle('Organize your Worksheet')
         main_layout = QVBoxLayout()
+
       # create a frame to organize the worksheet
         self.dataBox = QFrame()
         self.dataBox.setFrameShape(QFrame.Box)
         self.dataBoxLayout = QVBoxLayout(self.dataBox)
         self.VBoxes = {}
-        self.columnsnames ={}
         self.abcissas = {}
-        monotonic = 0
+        self.monotonic_colums = []
         for i in range(len(self.columns)):
-            self.VBoxes[self.columns[i]] = QHBoxLayout()
-            self.VBoxes[self.columns[i]].addWidget(QLabel(f'{i+1}'))
-            self.columnsnames[self.columns[i]]= QLineEdit()
-            self.columnsnames[self.columns[i]].setText(self.columns[i])
-            self.columnsnames[self.columns[i]].setFixedSize(self.columnsnames[self.columns[i]].sizeHint())
-            self.VBoxes[self.columns[i]].addWidget(self.columnsnames[self.columns[i]])
+            self.VBoxes[i] = QHBoxLayout()
+            self.VBoxes[i].addWidget(QLabel(f'{i+1}'))
+            
             if self.is_increasing[self.columns[i]]:
-                monotonic= i
+                self.monotonic_colums.append(QLineEdit())
+                self.monotonic_colums[-1].setText(self.columns[i])
+                self.columnname = self.monotonic_colums[-1].text()
+                #self.monotonic_colums[-1].textChanged.connect(self.update_abscissas)
+                self.monotonic_colums[-1].setFixedSize(self.monotonic_colums[-1].sizeHint())
+                self.VBoxes[i].addWidget(self.monotonic_colums[-1])
+
                 self.abcissas[self.columns[i]]= None
             else:
                 self.chooseAbcissa = QLineEdit()
-                self.abcissas[self.columns[i]] = self.columns[monotonic]
-                self.chooseAbcissa.setText(self.columns[monotonic])
-                self.VBoxes[self.columns[i]].addWidget(self.chooseAbcissa)
+                self.abcissas[self.columns[i]] = self.columnname
+                self.chooseAbcissa.setText(self.columns[i])
+                self.VBoxes[i].addWidget(self.chooseAbcissa)
+                
 
-            self.dataBoxLayout.addLayout(self.VBoxes[self.columns[i]])
+            self.dataBoxLayout.addLayout(self.VBoxes[i])
 
         main_layout.addWidget(self.dataBox)
-        message = QLabel("Please note that the software stills need some development. Therefore if you want to use the worksheet to save data, we advise you not to close while working with the software. Press 'OK' or modify this organisation. Press 'Cancel' only if you are sure you will NOT need to save the results of the other math functions")
-        message.setWordWrap(True)
-        message.setStyleSheet('color: red;')
-        main_layout.addWidget(message)
         #add exit or cancel buttons
         cancelok = QHBoxLayout()
         cancel = QPushButton('Cancel')
@@ -94,6 +96,7 @@ class WorkSheet(QtWidgets.QMainWindow):
             else:
                 self.is_increasing[col]=False
 
+
     def displayWorksheet(self):
         self.worksheet = QtWidgets.QMainWindow()
         self.worksheet.setWindowTitle('Worksheet')
@@ -104,13 +107,15 @@ class WorkSheet(QtWidgets.QMainWindow):
         self.worksheetlayout = QVBoxLayout(central_widget)
         
 
-        if not self.tree_widget:
-            self.tree_widget = QTreeWidget()
-            self.tree_widget.setHeaderLabel("Series Name")
+
+        self.tree_widget = QTreeWidget()
+        self.tree_widget.setHeaderLabel("Series Name")
         
         
         self.worksheetlayout.addWidget(self.tree_widget)
-        self.add_columns_to_tree()
+
+        if self.abcissas:
+            self.add_columns_to_tree()
 
         self.worksheet.show()
  

@@ -1,4 +1,6 @@
 # Teddy Tonin and Pasha Alidadi
+# Copyrights are given to LSCE and CentraleSupélec
+
 
 from cmath import nan
 import pandas as pd

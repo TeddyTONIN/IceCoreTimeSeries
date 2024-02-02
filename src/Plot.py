@@ -1,4 +1,5 @@
 # Linn Habberstad
+# Copyright are given to LSCE and CentraleSupélec
 
 import pyqtgraph as pg
 from PyQt5 import QtWidgets
@@ -59,9 +60,7 @@ class Graph(QWidget):
         layout.addWidget(self.labely)
 
         # Set spacing between widgets
-        layout.setSpacing(15)  # You can adjust the value as needed
-
-        layout.addStretch(1)
+        layout.setSpacing(20)  # You can adjust the value as needed
         layout.addWidget(self.perform_action_button)
 
         # Center the layout
