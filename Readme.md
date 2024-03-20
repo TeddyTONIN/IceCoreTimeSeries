@@ -22,11 +22,11 @@ The project operates under license  Open Software License 3.0
 
 - ``main.py`` Runs the app
 
-The functions that manages the UI
+The functions that manage the UI
 
 - ``file.py`` Uploads data on the app
-- ``home.py`` Create the main window of the app
-- ``organize_data.py`` Create a worksheet to save the data
+- ``home.py`` Creates the main window of the app
+- ``organize_data.py`` Createss a worksheet to save the data
 - ``plot.py`` Make plots
 
 The math functions 
