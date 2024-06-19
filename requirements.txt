@@ -5,3 +5,4 @@ pyqtgraph
 File_explorer
 numpy
 PyQtWebEngine
+scipy
