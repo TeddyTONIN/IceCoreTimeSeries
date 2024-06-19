@@ -55,7 +55,7 @@ Follow these steps:
 
 Install the required libraries:
 
-    pip install -Ur requirements.txt
+    pip install -r requirements.txt
 
 Run``main.py``
 

@@ -4,8 +4,6 @@
 import os
 from PyQt5.QtWidgets import QMainWindow, QWidget, QAction, QFileDialog, QLabel, QVBoxLayout,QPushButton,QDesktopWidget
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWebEngineWidgets import QWebEngineView
-
 import pandas as pd
 
 from file import load_file_on_widget,load_file
